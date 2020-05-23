@@ -13,4 +13,16 @@ namespace Phone_Emulator
         {
             get
             {
-                string correctNumber = "";
+                return NumberConvertWithoutSpaces(contactNumber);
+            }
+            set
+            {
+                contactNumber = NumberConvertWithSpaces(value);
+            }
+        }
+
+        public string name
+        {
+            get => contactName;
+            set => contactName = value;
+        }
