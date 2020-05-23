@@ -71,3 +71,24 @@ namespace Phone_Emulator
                     }
                 }
             }
+            else if (convert.Length == 9)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        correctNumber += convert[x * 3 + y];
+                    }
+
+                    correctNumber += " ";
+                }
+            }
+            else
+            {
+                correctNumber = convert;
+            }
+
+            return correctNumber;
+        }
+    }
+}
