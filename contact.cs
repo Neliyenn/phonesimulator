@@ -71,6 +71,7 @@ namespace Phone_Emulator
                     }
                 }
             }
+
             else if (convert.Length == 9)
             {
                 for (int x = 0; x < 3; x++)
@@ -83,6 +84,7 @@ namespace Phone_Emulator
                     correctNumber += " ";
                 }
             }
+            
             else
             {
                 correctNumber = convert;
