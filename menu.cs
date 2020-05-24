@@ -22,3 +22,9 @@ namespace Phone_Emulator
             "{Type exit to return}",
             "Type name or number to find:"
         };
+
+         public static List<string> contactsListMenu = new List<string>
+        {
+            ">>> CONTACTS LIST <<<",
+            "{Press any key to return}"
+        };
