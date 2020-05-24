@@ -115,3 +115,13 @@ namespace Phone_Emulator
                     }
             }
         }
+
+        static void AddContact(ContactClass contact)
+        {
+            PhoneDatabase.contacts.Add(contact);
+            Console.WriteLine("Contact added --> Name: {0}, Number: {1}", contact.name, contact.number);
+            Console.ReadKey(true);
+            PhoneCore.ForceReturn();
+        }
+    }
+}
