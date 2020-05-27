@@ -75,7 +75,7 @@ namespace Phone_Emulator
                     }
 
                 }
-                
+
                 if(CheckForReturn(message))
                 {
                     ForceReturn();
@@ -83,6 +83,39 @@ namespace Phone_Emulator
             }
         }
             
-        
+        static bool CheckForSelectChange(ConsoleKey pressedButton, out int valueChange)
+        {
+            if (pressedButton == ConsoleKey.UpArrow)
+            {
+                valueChange = 1;
+                return true;
+            }
+
+            if (pressedButton == ConsoleKey.DownArrow)
+            {
+                valueChange = -1;
+                return true;
+            }
+
+            valueChange = 0;
+            return false;
+        }
+
+        static bool CheckForConfirm(ConsoleKey pressedButton)
+        {
+            return pressedButton == ConsoleKey.Enter;
+        }
+
+        static bool CheckForReturn(string typedCommand)
+        {
+            return typedCommand == "exit";
+        }
+
+        public static void ForceReturn()
+        {
+            PhoneScreen.LockSelection(false);
+            PhoneScreen.LoadMenu(MenuManager.startMenu);
+            typingMenu = 0;
+        }
     }
 }
