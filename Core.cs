@@ -75,7 +75,14 @@ namespace Phone_Emulator
                     }
 
                 }
+                
+                if(CheckForReturn(message))
+                {
+                    ForceReturn();
+                }
             }
         }
+            
+        
     }
 }
