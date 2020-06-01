@@ -52,5 +52,43 @@ namespace Phone_Emulator
                 }
             }
         }
+
+        public static void SetSelection(int selection) => Update(selection);
+        public static void LockSelection(bool block) => isBlocked = block;
+        public static int SelectionValue { get => selectedOption; } 
+        public static void MoveSelection(int moveHolder)
+        {
+            int minRange = 0;
+            int maxRange = menus.Count - 1;
+
+            if (isBlocked)
+                return;
+
+            switch (moveHolder)
+            {
+                case -1:
+                    if(selectedOption < maxRange)
+                    {
+                        selectedOption++;
+                    }
+                    else
+                    {
+                        selectedOption = minRange;
+                    }
+                    break;
+                case 1:
+                    if (selectedOption > minRange)
+                    {
+                        selectedOption--;
+                    }
+                    else
+                    {
+                        selectedOption = maxRange;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
