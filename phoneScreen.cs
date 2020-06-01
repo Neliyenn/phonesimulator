@@ -18,6 +18,20 @@ namespace Phone_Emulator
 
             LoadMenu(loadMenu);
         }   
-    
+
+        public static void LoadMenu(List<string> loadMenu)
+        {
+            menus = loadMenu;
+
+            Update(selectedOption);
+        }
+
+        static void Update(int selected)
+        {
+            if (isBlocked)
+                return;
+
+            Console.Clear();
+        }
     }
 }
