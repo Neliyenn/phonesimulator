@@ -32,6 +32,25 @@ namespace Phone_Emulator
                 return;
 
             Console.Clear();
+         
+            if (selected > menus.Count - 1)
+                selected = menus.Count - 1;
+
+            for (int displayElementIndex = 0; displayElementIndex < menus.Count; displayElementIndex++)
+            {
+                if (selected == displayElementIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+
+                    Console.WriteLine(menus[displayElementIndex]);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine(menus[displayElementIndex]);
+                }
+            }
         }
     }
 }
