@@ -7,7 +7,7 @@ namespace Phone_Emulator
 {
     public static class PhoneScreen
     {
-     static int selectedOption;
+        static int selectedOption;
         static bool isBlocked;
 
         static List<string> menus = new List<string>();
@@ -89,6 +89,8 @@ namespace Phone_Emulator
                 default:
                     break;
             }
+
+            Update(selectedOption);
         }
     }
 }
