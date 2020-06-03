@@ -27,8 +27,6 @@ namespace Phone_Emulator
             set => contactName = value;
         }
 
-        public string FindingNumber() => contactNumber;
-
         public string NumberConvertWithSpaces(string convert)
         {
             string correctNumber = "";
@@ -91,6 +89,11 @@ namespace Phone_Emulator
             }
 
             return correctNumber;
+        }
+
+        public string BaseNumber
+        {
+            get => contactNumber;
         }
     }
 }
