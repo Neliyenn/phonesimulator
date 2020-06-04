@@ -9,8 +9,9 @@ namespace Phone_Emulator
     {
         static int selectedOption;
         static bool isBlocked;
+        static int minSelection;
 
-        static List<string> menus = new List<string>();
+        static List<string> actualUsingMenu = new List<string>();
 
         public static void Initialize(List<string> loadMenu)
         {
@@ -21,9 +22,18 @@ namespace Phone_Emulator
 
         public static void LoadMenu(List<string> loadMenu)
         {
-            menus = loadMenu;
+            actualUsingMenu = loadMenu;
 
             Update(selectedOption);
+        }
+
+        public static void Reload()
+        {
+            bool lockState = isBlocked;
+
+            LockSelection(false);
+            Update(selectedOption);
+            LockSelection(lockState);
         }
 
         static void Update(int selected)
@@ -33,33 +43,51 @@ namespace Phone_Emulator
 
             Console.Clear();
          
-            if (selected > menus.Count - 1)
-                selected = menus.Count - 1;
+            if (selected > actualUsingMenu.Count - 1)
+                selected = actualUsingMenu.Count - 1;
 
-            for (int displayElementIndex = 0; displayElementIndex < menus.Count; displayElementIndex++)
+            for (int displayElementIndex = 0; displayElementIndex < actualUsingMenu.Count; displayElementIndex++)
             {
                 if (selected == displayElementIndex)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine(menus[displayElementIndex]);
+                    Console.WriteLine(actualUsingMenu[displayElementIndex]);
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
+                    if (actualUsingMenu[displayElementIndex].Contains("<MODE/>"))
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
 
-                    Console.WriteLine(menus[displayElementIndex]);
+                        Console.Write(actualUsingMenu[displayElementIndex].Split('<')[0]);
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+
+                        Console.WriteLine(MenuManager.findingSwitch ? "Only first letter counts" : "If contact contains");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+
+                        Console.WriteLine(actualUsingMenu[displayElementIndex]);
+                    }
                 }
             }
         }
 
-        public static void SetSelection(int selection) => Update(selection);
+        public static void SetSelection(int selection, int minValue = 0) 
+        {
+            minSelection = minValue;
+            Update(selection);
+            selectedOption = selection;
+        }
         public static void LockSelection(bool block) => isBlocked = block;
         public static int SelectionValue { get => selectedOption; } 
         public static void MoveSelection(int moveHolder)
         {
-            int minRange = 0;
-            int maxRange = menus.Count - 1;
+            int minRange = minSelection;
+            int maxRange = actualUsingMenu.Count - 1;
 
             if (isBlocked)
                 return;
