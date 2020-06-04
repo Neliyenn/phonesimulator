@@ -13,7 +13,7 @@ namespace Phone_Emulator
              71,74,75,76,77,81,82,83,84,85,86,
              87,89,91,94,95};
 
-             public static List<int> alarmNumbers = new List<int>
+        public static List<int> alarmNumbers = new List<int>
         {
             112,984,985,986,987,991,992,993,994,997,998,999
         };
