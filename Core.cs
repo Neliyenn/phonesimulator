@@ -11,7 +11,8 @@ namespace Phone_Emulator
         public static void Start()
         {
             PhoneScreen.Initialize(MenuManager.startMenu);
-        while(true)
+
+            while(true)
             {
                 ConsoleKey response = new ConsoleKey();
                 string message = "";
@@ -20,12 +21,15 @@ namespace Phone_Emulator
                     response = Console.ReadKey(true).Key;
                 else if(typingMenu == 2)
                     MenuManager.ProceedCommand(2, "");
+                else if(typingMenu == 4)
+                    MenuManager.ProceedCommand(4, "");
                 else
                 {
                     message = Console.ReadLine();
 
                     MenuManager.ProceedCommand(typingMenu, message);
                 }
+
                 if (CheckForSelectChange(response, out int value))
                 { 
                     PhoneScreen.MoveSelection(value);
@@ -83,7 +87,7 @@ namespace Phone_Emulator
             }
         }
             
-        static bool CheckForSelectChange(ConsoleKey pressedButton, out int valueChange)
+        public static bool CheckForSelectChange(ConsoleKey pressedButton, out int valueChange)
         {
             if (pressedButton == ConsoleKey.UpArrow)
             {
@@ -116,6 +120,7 @@ namespace Phone_Emulator
             PhoneScreen.LockSelection(false);
             PhoneScreen.LoadMenu(MenuManager.startMenu);
             typingMenu = 0;
+            PhoneScreen.SetSelection(PhoneScreen.SelectionValue);
         }
     }
 }
